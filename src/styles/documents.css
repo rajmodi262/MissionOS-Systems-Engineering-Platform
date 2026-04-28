@@ -1,0 +1,217 @@
+/* ============================================================
+   Document Studio CSS
+   ============================================================ */
+
+.doc-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: var(--space-lg);
+  height: calc(100vh - 140px);
+}
+
+/* ── Document List (left panel) ── */
+.doc-list-panel {
+  padding: var(--space-md);
+  overflow-y: auto;
+}
+
+.doc-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.doc-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 2px;
+}
+
+.doc-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.doc-item.active {
+  background: var(--plasma-green-dim);
+  border-left: 3px solid var(--plasma-green);
+}
+
+.doc-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.doc-icon.srd { color: var(--plasma-green); }
+.doc-icon.icd { color: var(--photon-blue); }
+.doc-icon.tpp { color: var(--solar-amber); }
+.doc-icon.rrr { color: var(--critical-red); }
+
+.doc-name {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.doc-meta {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  margin-top: 2px;
+}
+
+/* ── Document Editor (right panel) ── */
+.doc-editor-panel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.doc-editor-toolbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  border-bottom: 1px solid var(--glass-border);
+  flex-shrink: 0;
+}
+
+.doc-toolbar-btn {
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+  background: none;
+  text-transform: uppercase;
+}
+
+.doc-toolbar-btn:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-secondary);
+}
+
+.doc-toolbar-btn.active {
+  background: var(--plasma-green-dim);
+  color: var(--plasma-green);
+  border-color: rgba(0, 255, 157, 0.2);
+}
+
+.doc-editor-body {
+  flex: 1;
+  padding: var(--space-lg) var(--space-xl);
+  overflow-y: auto;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--text-primary);
+}
+
+.doc-editor-body:focus {
+  outline: none;
+}
+
+.doc-editor-body h1 {
+  font-family: var(--font-heading);
+  font-size: 1.6rem;
+  letter-spacing: 0.1em;
+  color: var(--plasma-green);
+  margin-bottom: var(--space-md);
+  padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.doc-editor-body h2 {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  margin-top: var(--space-xl);
+  margin-bottom: var(--space-sm);
+}
+
+.doc-editor-body h3 {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-xs);
+}
+
+.doc-editor-body p {
+  margin-bottom: var(--space-md);
+  color: var(--text-secondary);
+}
+
+.doc-editor-body ul, .doc-editor-body ol {
+  padding-left: var(--space-xl);
+  margin-bottom: var(--space-md);
+}
+
+.doc-editor-body li {
+  margin-bottom: var(--space-xs);
+  color: var(--text-secondary);
+}
+
+.doc-editor-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--space-md) 0;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.doc-editor-body table th {
+  background: rgba(255, 255, 255, 0.03);
+  padding: var(--space-sm);
+  text-align: left;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--glass-border);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.65rem;
+}
+
+.doc-editor-body table td {
+  padding: var(--space-sm);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  color: var(--text-secondary);
+}
+
+.doc-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-xs) var(--space-md);
+  border-top: 1px solid var(--glass-border);
+  flex-shrink: 0;
+}
+
+.doc-status-item {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.doc-status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--plasma-green);
+  animation: breathe 2s ease-in-out infinite;
+}

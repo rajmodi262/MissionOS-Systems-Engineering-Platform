@@ -1,0 +1,148 @@
+/* ============================================================
+   Risk Management CSS
+   ============================================================ */
+
+.risk-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+
+/* Risk Matrix (5x5 heatmap) */
+.risk-matrix-container {
+  padding: var(--space-lg);
+}
+
+.risk-matrix-grid {
+  display: grid;
+  grid-template-columns: 30px repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr) 30px;
+  gap: 3px;
+  aspect-ratio: 1;
+  max-width: 420px;
+  margin: 0 auto;
+}
+
+.risk-cell {
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  min-height: 60px;
+}
+
+.risk-cell:hover {
+  transform: scale(1.05);
+  z-index: 5;
+}
+
+.risk-cell.green { background: rgba(0, 255, 157, 0.12); }
+.risk-cell.yellow { background: rgba(255, 184, 48, 0.12); }
+.risk-cell.orange { background: rgba(255, 140, 48, 0.18); }
+.risk-cell.red { background: rgba(255, 59, 92, 0.2); }
+
+.risk-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid;
+  position: relative;
+  cursor: pointer;
+}
+
+.risk-dot.critical {
+  background: var(--critical-red);
+  border-color: var(--critical-red);
+  animation: pulse-red 1.5s ease-in-out infinite;
+}
+
+.risk-dot.active {
+  background: var(--solar-amber);
+  border-color: var(--solar-amber);
+}
+
+.risk-dot.mitigated {
+  background: var(--plasma-green);
+  border-color: var(--plasma-green);
+}
+
+.risk-dot.monitoring {
+  background: var(--photon-blue);
+  border-color: var(--photon-blue);
+}
+
+.risk-axis-label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+
+.risk-axis-title {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  text-align: center;
+  letter-spacing: 0.1em;
+  margin-top: var(--space-sm);
+}
+
+/* Risk List */
+.risk-list-container {
+  padding: var(--space-lg);
+  max-height: calc(100vh - 200px);
+  overflow-y: auto;
+}
+
+.risk-item {
+  display: flex;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  border-left: 3px solid var(--text-ghost);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  margin-bottom: var(--space-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.risk-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.risk-item.critical { border-left-color: var(--critical-red); }
+.risk-item.active { border-left-color: var(--solar-amber); }
+.risk-item.mitigated { border-left-color: var(--plasma-green); }
+.risk-item.monitoring { border-left-color: var(--photon-blue); }
+
+.risk-score {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 700;
+  min-width: 40px;
+  text-align: center;
+  line-height: 1;
+}
+
+.risk-score.high { color: var(--critical-red); }
+.risk-score.medium { color: var(--solar-amber); }
+.risk-score.low { color: var(--plasma-green); }
+
+.risk-title {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  margin-bottom: var(--space-xs);
+}
+
+.risk-meta-row {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}

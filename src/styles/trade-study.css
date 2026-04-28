@@ -1,0 +1,149 @@
+/* ============================================================
+   Trade Study Simulator CSS
+   ============================================================ */
+
+.trade-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: var(--space-lg);
+  height: calc(100vh - 180px);
+}
+
+.trade-config {
+  overflow-y: auto;
+  padding: var(--space-lg);
+}
+
+.trade-results {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  padding: var(--space-md);
+}
+
+.trade-chart-card {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  min-height: 240px;
+}
+
+.trade-chart-card h3 {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+.trade-chart-card canvas {
+  flex: 1;
+  max-height: 200px;
+  width: 100% !important;
+}
+
+/* Sliders */
+.trade-slider-group {
+  margin-bottom: var(--space-md);
+}
+
+.trade-slider-label {
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-xs);
+}
+
+.trade-slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  outline: none;
+}
+
+.trade-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--plasma-green);
+  cursor: pointer;
+  box-shadow: 0 0 8px var(--plasma-green-glow);
+}
+
+.trade-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--plasma-green);
+  cursor: pointer;
+  border: none;
+}
+
+/* Alternative inputs */
+.trade-alt-input {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-xs);
+}
+
+.trade-alt-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.trade-alt-name {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+/* Decision matrix */
+.decision-matrix {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+}
+
+.decision-matrix th {
+  padding: var(--space-sm);
+  text-align: center;
+  color: var(--text-dim);
+  border-bottom: 1px solid var(--glass-border);
+  font-weight: normal;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.decision-matrix td {
+  padding: var(--space-sm);
+  text-align: center;
+  color: var(--text-secondary);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.decision-matrix td.winner {
+  color: var(--plasma-green);
+  background: var(--plasma-green-dim);
+  font-weight: 700;
+}
+
+.trade-chart-card.full-width {
+  grid-column: 1 / -1;
+}

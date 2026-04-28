@@ -1,0 +1,178 @@
+/* ============================================================
+   Orion AI Copilot CSS
+   ============================================================ */
+
+/* Trigger Icon */
+#orion-trigger {
+  position: fixed;
+  bottom: var(--space-lg);
+  right: var(--space-lg);
+  z-index: var(--z-orion);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 2px solid var(--plasma-green);
+  background: rgba(0, 255, 157, 0.05);
+  color: var(--plasma-green);
+  animation: pulse-green 3s ease-in-out infinite;
+  transition: all 0.3s ease;
+}
+
+#orion-trigger:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 24px var(--plasma-green-glow);
+}
+
+#orion-trigger.alert {
+  border-color: var(--solar-amber);
+  color: var(--solar-amber);
+  animation: pulse-amber 2s ease-in-out infinite;
+}
+
+#orion-trigger svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Panel */
+.orion-panel {
+  position: fixed;
+  bottom: 0;
+  left: var(--sidebar-collapsed);
+  right: var(--drawer-width);
+  height: 0;
+  z-index: var(--z-orion);
+  background: rgba(8, 10, 22, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid var(--glass-border-lit);
+  transition: height 0.4s var(--ease-out-expo);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.orion-panel.open {
+  height: 320px;
+}
+
+.orion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm) var(--space-lg);
+  border-bottom: 1px solid var(--glass-border);
+  flex-shrink: 0;
+}
+
+.orion-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  color: var(--plasma-green);
+}
+
+.orion-title .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--plasma-green);
+  animation: breathe 2s ease-in-out infinite;
+}
+
+.orion-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.orion-msg {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  line-height: 1.6;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  animation: fadeInUp 0.3s var(--ease-out-expo);
+}
+
+.orion-msg.system {
+  color: var(--plasma-green);
+  background: rgba(0, 255, 157, 0.05);
+  border-left: 2px solid var(--plasma-green);
+}
+
+.orion-msg.alert {
+  color: var(--solar-amber);
+  background: rgba(255, 184, 48, 0.05);
+  border-left: 2px solid var(--solar-amber);
+}
+
+.orion-msg.user {
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 2px solid var(--text-dim);
+  align-self: flex-end;
+  max-width: 80%;
+}
+
+.orion-msg a {
+  color: var(--photon-blue);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.orion-input-row {
+  display: flex;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-lg);
+  border-top: 1px solid var(--glass-border);
+  flex-shrink: 0;
+}
+
+.orion-input {
+  flex: 1;
+  padding: var(--space-sm) var(--space-md);
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  outline: none;
+  caret-color: var(--plasma-green);
+}
+
+.orion-input:focus {
+  border-color: var(--plasma-green);
+}
+
+.orion-input::placeholder {
+  color: var(--text-ghost);
+}
+
+.orion-send {
+  padding: var(--space-sm) var(--space-md);
+  background: var(--plasma-green-dim);
+  border: 1px solid rgba(0, 255, 157, 0.3);
+  border-radius: var(--radius-md);
+  color: var(--plasma-green);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-transform: uppercase;
+}
+
+.orion-send:hover {
+  background: rgba(0, 255, 157, 0.15);
+}

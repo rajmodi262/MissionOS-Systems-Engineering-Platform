@@ -1,0 +1,288 @@
+/* ============================================================
+   Requirements Engineering Workspace
+   ============================================================ */
+
+/* ── Document View ── */
+.req-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.req-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-lg);
+  border-left: 3px solid var(--text-ghost);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.req-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.req-item.selected {
+  background: rgba(0, 255, 157, 0.04);
+}
+
+.req-item.status-verified { border-left-color: var(--plasma-green); }
+.req-item.status-draft { border-left-color: var(--solar-amber); }
+.req-item.status-failed { border-left-color: var(--critical-red); }
+.req-item.status-in-review { border-left-color: var(--photon-blue); }
+
+.req-id {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  min-width: 65px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+
+.req-text {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  line-height: 1.6;
+  flex: 1;
+}
+
+.req-text[contenteditable="true"] {
+  outline: none;
+  border-bottom: 1px solid var(--plasma-green);
+  padding-bottom: 4px;
+}
+
+.req-meta {
+  display: flex;
+  gap: var(--space-sm);
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.req-trace-btn {
+  width: 20px;
+  height: 20px;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: color 0.2s ease;
+  opacity: 0.5;
+}
+
+.req-item:hover .req-trace-btn {
+  opacity: 1;
+}
+
+.req-trace-btn:hover {
+  color: var(--photon-blue);
+}
+
+/* ── AI Suggestion Chips ── */
+.ai-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-top: var(--space-sm);
+  padding-left: 80px;
+}
+
+.ai-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  animation: fadeInUp 0.3s var(--ease-out-expo);
+}
+
+.ai-chip.warning {
+  background: var(--solar-amber-dim);
+  color: var(--solar-amber);
+  border: 1px solid rgba(255, 184, 48, 0.2);
+}
+
+.ai-chip.success {
+  background: var(--plasma-green-dim);
+  color: var(--plasma-green);
+  border: 1px solid rgba(0, 255, 157, 0.2);
+}
+
+.ai-chip.error {
+  background: var(--critical-red-dim);
+  color: var(--critical-red);
+  border: 1px solid rgba(255, 59, 92, 0.2);
+}
+
+/* AI Indicator */
+.ai-indicator {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--photon-blue);
+}
+
+.ai-ring {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--photon-blue);
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin-slow 2s linear infinite;
+}
+
+/* ── Hierarchy View ── */
+.hierarchy-canvas {
+  width: 100%;
+  height: calc(100vh - 200px);
+  position: relative;
+}
+
+.hierarchy-node {
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s var(--ease-out-expo);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  text-align: center;
+}
+
+.hierarchy-node:hover {
+  transform: scale(1.2);
+  z-index: 10;
+}
+
+.hierarchy-node.tier-0 {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, var(--plasma-green-dim), transparent);
+  border: 2px solid var(--plasma-green);
+  box-shadow: 0 0 20px var(--plasma-green-glow);
+  color: var(--plasma-green);
+}
+
+.hierarchy-node.tier-1 {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, var(--photon-blue-dim), transparent);
+  border: 2px solid var(--photon-blue);
+  box-shadow: 0 0 15px var(--photon-blue-glow);
+  color: var(--photon-blue);
+}
+
+.hierarchy-node.tier-2 {
+  width: 45px;
+  height: 45px;
+  background: radial-gradient(circle, var(--solar-amber-dim), transparent);
+  border: 1.5px solid var(--solar-amber);
+  box-shadow: 0 0 10px var(--solar-amber-glow);
+  color: var(--solar-amber);
+}
+
+/* ── RTM Heatmap ── */
+.rtm-container {
+  overflow: auto;
+  max-height: calc(100vh - 220px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+}
+
+.rtm-table {
+  border-collapse: collapse;
+  width: max-content;
+  min-width: 100%;
+}
+
+.rtm-table th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background: var(--glass-bg-solid);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  padding: var(--space-sm);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid var(--glass-border);
+  white-space: nowrap;
+}
+
+.rtm-table th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 3;
+}
+
+.rtm-table td {
+  padding: var(--space-xs);
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  min-width: 50px;
+  height: 50px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.rtm-table td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: var(--glass-bg-solid);
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  text-align: left;
+  padding: var(--space-sm);
+  white-space: nowrap;
+}
+
+.rtm-table td:hover {
+  outline: 1px solid var(--photon-blue);
+}
+
+.rtm-cell {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.rtm-cell.strong {
+  background: rgba(0, 255, 157, 0.25);
+  box-shadow: inset 0 0 8px rgba(0, 255, 157, 0.15);
+}
+
+.rtm-cell.weak {
+  background: rgba(255, 184, 48, 0.2);
+}
+
+.rtm-cell.gap {
+  background: rgba(255, 59, 92, 0.08);
+}
+
+.rtm-cell.gap .gap-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--critical-red);
+  animation: pulse-red 2s ease-in-out infinite;
+}
+
+.rtm-cell.empty {
+  background: transparent;
+}

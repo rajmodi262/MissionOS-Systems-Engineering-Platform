@@ -1,0 +1,179 @@
+/* ============================================================
+   Architecture Canvas CSS
+   ============================================================ */
+
+.arch-canvas-container {
+  position: relative;
+  width: 100%;
+  height: calc(100vh - 140px);
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-border);
+  cursor: grab;
+}
+
+.arch-canvas-container:active {
+  cursor: grabbing;
+}
+
+.arch-canvas-inner {
+  position: absolute;
+  transform-origin: 0 0;
+  transition: none;
+  min-width: 3000px;
+  min-height: 2000px;
+}
+
+/* ── Architecture Nodes ── */
+.arch-node {
+  position: absolute;
+  border-radius: var(--radius-lg);
+  padding: var(--space-md);
+  cursor: pointer;
+  transition: box-shadow 0.3s ease, transform 0.15s ease;
+  min-width: 140px;
+  text-align: center;
+  user-select: none;
+}
+
+.arch-node:hover {
+  transform: scale(1.05);
+  z-index: 10;
+}
+
+.arch-node.selected {
+  z-index: 20;
+}
+
+.arch-node-icon {
+  width: 32px;
+  height: 32px;
+  margin: 0 auto var(--space-xs);
+}
+
+.arch-node-label {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+}
+
+.arch-node-abbr {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  opacity: 0.6;
+}
+
+.arch-node-health {
+  margin-top: var(--space-xs);
+  width: 100%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.arch-node-health-bar {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.5s var(--ease-out-expo);
+}
+
+/* SVG connections */
+.arch-connections {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.arch-connection {
+  stroke-width: 1.5;
+  fill: none;
+  opacity: 0.4;
+}
+
+.arch-connection.data { stroke: var(--photon-blue); }
+.arch-connection.power { stroke: var(--solar-amber); }
+.arch-connection.thermal { stroke: #FF6B35; }
+
+.arch-connection-animated {
+  stroke-dasharray: 6 4;
+  animation: flowDash 1.5s linear infinite;
+}
+
+@keyframes flowDash {
+  0% { stroke-dashoffset: 10; }
+  100% { stroke-dashoffset: 0; }
+}
+
+/* Controls */
+.arch-controls {
+  position: absolute;
+  bottom: var(--space-md);
+  right: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  z-index: 20;
+}
+
+.arch-ctrl-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 10, 22, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.arch-ctrl-btn:hover {
+  border-color: var(--plasma-green);
+  color: var(--plasma-green);
+}
+
+/* Info panel */
+.arch-info {
+  position: absolute;
+  bottom: var(--space-md);
+  left: var(--space-md);
+  z-index: 20;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  display: flex;
+  gap: var(--space-lg);
+}
+
+/* Mini map */
+.arch-minimap {
+  position: absolute;
+  top: var(--space-md);
+  right: var(--space-md);
+  width: 160px;
+  height: 100px;
+  background: rgba(8, 10, 22, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  z-index: 20;
+}
+
+.arch-minimap-viewport {
+  position: absolute;
+  border: 1px solid var(--plasma-green);
+  background: rgba(0, 255, 157, 0.05);
+  border-radius: 2px;
+  pointer-events: none;
+}

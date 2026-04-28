@@ -1,0 +1,21 @@
+{
+  "name": "mission-os",
+  "version": "3.7.1",
+  "description": "MISSION OS — The Operating System for Space Missions. A systems engineering management platform.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test:selenium": "node tests/selenium-tests.js"
+  },
+  "devDependencies": {
+    "selenium-webdriver": "^4.43.0",
+    "vite": "^8.0.10"
+  },
+  "dependencies": {
+    "chart.js": "^4.5.1",
+    "mermaid": "^11.14.0"
+  }
+}

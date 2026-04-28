@@ -1,0 +1,263 @@
+/* ============================================================
+   MISSION OS — Design System
+   The Holographic Command Deck
+   ============================================================ */
+
+/* ── CSS Custom Properties (Design Tokens) ── */
+:root {
+  /* Accent Colors */
+  --plasma-green: #00FF9D;
+  --plasma-green-dim: rgba(0, 255, 157, 0.15);
+  --plasma-green-glow: rgba(0, 255, 157, 0.4);
+  --solar-amber: #FFB830;
+  --solar-amber-dim: rgba(255, 184, 48, 0.15);
+  --solar-amber-glow: rgba(255, 184, 48, 0.4);
+  --critical-red: #FF3B5C;
+  --critical-red-dim: rgba(255, 59, 92, 0.15);
+  --critical-red-glow: rgba(255, 59, 92, 0.4);
+  --photon-blue: #00C8FF;
+  --photon-blue-dim: rgba(0, 200, 255, 0.15);
+  --photon-blue-glow: rgba(0, 200, 255, 0.4);
+
+  /* Background System */
+  --bg-deep: #050510;
+  --bg-nebula-1: #0D0B2E;
+  --bg-nebula-2: #0A1628;
+  --bg-surface: rgba(10, 12, 28, 0.85);
+
+  /* Glassmorphism */
+  --glass-bg: rgba(15, 18, 35, 0.65);
+  --glass-bg-solid: rgba(12, 14, 30, 0.88);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-border-lit: rgba(255, 255, 255, 0.18);
+  --glass-border-bright: rgba(255, 255, 255, 0.25);
+  --shadow-indigo: rgba(20, 10, 60, 0.6);
+  --shadow-deep: rgba(5, 2, 30, 0.8);
+
+  /* Text */
+  --text-primary: #E8E8F0;
+  --text-secondary: #8888A0;
+  --text-dim: #555570;
+  --text-ghost: #333348;
+
+  /* Typography */
+  --font-heading: 'Bebas Neue', 'Impact', sans-serif;
+  --font-mono: 'Space Mono', 'Courier New', monospace;
+  --font-body: 'DM Serif Display', 'Georgia', serif;
+
+  /* Spacing Scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+
+  /* Transitions */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-in-out-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 150ms var(--ease-in-out-smooth);
+  --transition-normal: 300ms var(--ease-out-expo);
+  --transition-slow: 600ms var(--ease-out-expo);
+  --transition-dramatic: 800ms var(--ease-out-expo);
+
+  /* Z-Index Scale */
+  --z-particles: 0;
+  --z-nebula: 1;
+  --z-scanlines: 2;
+  --z-content: 10;
+  --z-sidebar: 20;
+  --z-drawer: 25;
+  --z-toolbar: 30;
+  --z-modal: 40;
+  --z-orion: 50;
+  --z-overlay: 60;
+  --z-login: 100;
+
+  /* Layout */
+  --sidebar-collapsed: 72px;
+  --sidebar-expanded: 260px;
+  --drawer-width: 320px;
+}
+
+/* ── CSS Reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background: var(--bg-deep);
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  line-height: 1.6;
+}
+
+a {
+  color: var(--photon-blue);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+a:hover {
+  color: var(--plasma-green);
+}
+
+button {
+  font-family: var(--font-mono);
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: var(--text-primary);
+  outline: none;
+}
+
+input, textarea {
+  font-family: var(--font-mono);
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  outline: none;
+}
+
+/* ── Scrollbar Styling ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 255, 157, 0.25);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 255, 157, 0.5);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 255, 157, 0.25) rgba(255, 255, 255, 0.02);
+}
+
+/* ── Typography Utilities ── */
+.font-heading {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: -0.02em;
+}
+
+.font-body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+/* ── Color Utilities ── */
+.text-green { color: var(--plasma-green); }
+.text-amber { color: var(--solar-amber); }
+.text-red { color: var(--critical-red); }
+.text-blue { color: var(--photon-blue); }
+.text-dim { color: var(--text-dim); }
+.text-secondary { color: var(--text-secondary); }
+
+/* ── Glow Effects ── */
+.glow-green {
+  text-shadow: 0 0 8px var(--plasma-green-glow), 0 0 24px rgba(0, 255, 157, 0.15);
+}
+.glow-amber {
+  text-shadow: 0 0 8px var(--solar-amber-glow), 0 0 24px rgba(255, 184, 48, 0.15);
+}
+.glow-red {
+  text-shadow: 0 0 8px var(--critical-red-glow), 0 0 24px rgba(255, 59, 92, 0.15);
+}
+.glow-blue {
+  text-shadow: 0 0 8px var(--photon-blue-glow), 0 0 24px rgba(0, 200, 255, 0.15);
+}
+
+/* ── Selection ── */
+::selection {
+  background: var(--plasma-green-dim);
+  color: var(--plasma-green);
+}
+
+/* ── Keyframe Animations (Shared) ── */
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 4px var(--plasma-green-glow); }
+  50% { box-shadow: 0 0 16px var(--plasma-green-glow), 0 0 32px rgba(0, 255, 157, 0.1); }
+}
+@keyframes pulse-amber {
+  0%, 100% { box-shadow: 0 0 4px var(--solar-amber-glow); }
+  50% { box-shadow: 0 0 16px var(--solar-amber-glow), 0 0 32px rgba(255, 184, 48, 0.1); }
+}
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 4px var(--critical-red-glow); }
+  50% { box-shadow: 0 0 16px var(--critical-red-glow), 0 0 32px rgba(255, 59, 92, 0.1); }
+}
+@keyframes breathe {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes flicker {
+  0% { opacity: 0.98; }
+  5% { opacity: 0.95; }
+  10% { opacity: 0.99; }
+  15% { opacity: 0.94; }
+  20% { opacity: 0.98; }
+  50% { opacity: 1; }
+  80% { opacity: 0.97; }
+  85% { opacity: 0.99; }
+  90% { opacity: 0.96; }
+  100% { opacity: 1; }
+}
+@keyframes dataStream {
+  0% { stroke-dashoffset: 20; }
+  100% { stroke-dashoffset: 0; }
+}

@@ -1,0 +1,269 @@
+/* ============================================================
+   Mission Command Center — Dashboard
+   ============================================================ */
+
+/* ── Telemetry Strip ── */
+.telemetry-strip {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 48px;
+  margin-bottom: var(--space-xl);
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+}
+
+.telemetry-strip::before,
+.telemetry-strip::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.telemetry-strip::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg-deep), transparent);
+}
+
+.telemetry-strip::after {
+  right: 0;
+  background: linear-gradient(-90deg, var(--bg-deep), transparent);
+}
+
+.telemetry-track {
+  display: flex;
+  gap: var(--space-xl);
+  padding: 0 var(--space-lg);
+  align-items: center;
+  height: 100%;
+  animation: scroll-telemetry 40s linear infinite;
+  width: max-content;
+}
+
+@keyframes scroll-telemetry {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.telemetry-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  white-space: nowrap;
+}
+
+.telemetry-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+}
+
+.telemetry-value {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--plasma-green);
+  text-shadow: 0 0 6px var(--plasma-green-glow);
+}
+
+.telemetry-value.warning {
+  color: var(--solar-amber);
+  text-shadow: 0 0 6px var(--solar-amber-glow);
+}
+
+.telemetry-mission {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  color: var(--text-ghost);
+  letter-spacing: 0.08em;
+}
+
+.telemetry-divider {
+  width: 1px;
+  height: 24px;
+  background: var(--glass-border);
+}
+
+/* ── Honeycomb Grid ── */
+.honeycomb-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+  padding: var(--space-lg) 0;
+}
+
+.honeycomb-row {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+}
+
+.honeycomb-row:nth-child(even) {
+  margin-left: 100px;
+}
+
+/* ── Hex Card ── */
+.hex-card {
+  width: 200px;
+  height: 230px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: var(--glass-bg-solid);
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s var(--ease-out-expo), filter 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: var(--space-xl);
+}
+
+.hex-card:hover {
+  transform: scale(1.08);
+  filter: brightness(1.15);
+}
+
+.hex-card::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  background: var(--glass-bg-solid);
+  z-index: 0;
+}
+
+/* Hex glow border */
+.hex-card-border {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.hex-card-border svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Health Score */
+.hex-health {
+  font-family: var(--font-mono);
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1;
+  margin-bottom: var(--space-xs);
+  position: relative;
+  z-index: 1;
+}
+
+.hex-health.nominal { color: var(--plasma-green); text-shadow: 0 0 15px var(--plasma-green-glow); }
+.hex-health.warning { color: var(--solar-amber); text-shadow: 0 0 15px var(--solar-amber-glow); }
+.hex-health.critical { color: var(--critical-red); text-shadow: 0 0 15px var(--critical-red-glow); }
+
+/* Mission Name */
+.hex-name {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+  position: relative;
+  z-index: 1;
+  margin-bottom: 2px;
+}
+
+/* Phase */
+.hex-phase {
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+  position: relative;
+  z-index: 1;
+  text-transform: uppercase;
+}
+
+/* Completion Bar */
+.hex-completion {
+  width: 80%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+  margin-top: var(--space-sm);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hex-completion-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1s var(--ease-out-expo);
+}
+
+.hex-completion-fill.nominal { background: var(--plasma-green); box-shadow: 0 0 6px var(--plasma-green-glow); }
+.hex-completion-fill.warning { background: var(--solar-amber); box-shadow: 0 0 6px var(--solar-amber-glow); }
+.hex-completion-fill.critical { background: var(--critical-red); box-shadow: 0 0 6px var(--critical-red-glow); }
+
+/* Pulse animation for critical cards */
+.hex-card.critical-pulse {
+  animation: hexPulse 2s ease-in-out infinite;
+}
+
+@keyframes hexPulse {
+  0%, 100% { filter: brightness(1) drop-shadow(0 0 5px rgba(255, 59, 92, 0.2)); }
+  50% { filter: brightness(1.1) drop-shadow(0 0 15px rgba(255, 59, 92, 0.4)); }
+}
+
+/* ── Section Titles ── */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  letter-spacing: 0.15em;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.section-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--glass-border);
+}
+
+/* ── Stats Row ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.stat-card {
+  padding: var(--space-md);
+  text-align: center;
+}
+
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: 1.8rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: var(--space-xs);
+}

@@ -1,0 +1,144 @@
+/* ============================================================
+   Three-Zone Layout System
+   ============================================================ */
+
+/* ── Main App Layout ── */
+#app {
+  position: relative;
+  z-index: var(--z-content);
+  width: 100vw;
+  height: 100vh;
+}
+
+.app-layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-collapsed) 1fr var(--drawer-width);
+  width: 100vw;
+  height: 100vh;
+  transition: grid-template-columns 0.3s var(--ease-out-expo);
+}
+
+.app-layout.sidebar-expanded {
+  grid-template-columns: var(--sidebar-expanded) 1fr var(--drawer-width);
+}
+
+.app-layout.drawer-hidden {
+  grid-template-columns: var(--sidebar-collapsed) 1fr 0px;
+}
+
+.app-layout.sidebar-expanded.drawer-hidden {
+  grid-template-columns: var(--sidebar-expanded) 1fr 0px;
+}
+
+/* ── Zone Left — Mission Spine ── */
+.zone-sidebar {
+  grid-column: 1;
+  height: 100vh;
+  z-index: var(--z-sidebar);
+  overflow: hidden;
+}
+
+/* ── Zone Center — The Canvas ── */
+.zone-canvas {
+  grid-column: 2;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: var(--space-lg);
+  position: relative;
+}
+
+/* View transitions */
+.zone-canvas.view-transition-out {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.2s ease;
+}
+
+.zone-canvas.view-transition-in {
+  animation: fadeInUp 0.4s var(--ease-out-expo);
+}
+
+/* ── Zone Right — Context Drawer ── */
+.zone-drawer {
+  grid-column: 3;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: var(--z-drawer);
+  background: var(--glass-bg-solid);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-left: 1px solid var(--glass-border-lit);
+  transition: transform 0.3s var(--ease-out-expo), opacity 0.3s ease;
+}
+
+.zone-drawer.hidden {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+/* ── Header Bar (inside center canvas) ── */
+.view-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-lg);
+  border-bottom: 1px solid var(--glass-border);
+  margin-bottom: var(--space-lg);
+}
+
+.view-header h1 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  letter-spacing: 0.15em;
+  color: var(--text-primary);
+}
+
+.view-header .subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  letter-spacing: 0.08em;
+}
+
+/* ── Tab Bar ── */
+.tab-bar {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid var(--glass-border);
+  margin-bottom: var(--space-lg);
+}
+
+.tab-btn {
+  padding: var(--space-sm) var(--space-lg);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: relative;
+  transition: color var(--transition-fast);
+  text-transform: uppercase;
+}
+
+.tab-btn:hover {
+  color: var(--text-secondary);
+}
+
+.tab-btn.active {
+  color: var(--plasma-green);
+}
+
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--plasma-green);
+  box-shadow: 0 0 8px var(--plasma-green-glow);
+}
