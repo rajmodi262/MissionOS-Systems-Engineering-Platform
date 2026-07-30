@@ -20,6 +20,6 @@
   },
   "dependencies": {
     "chart.js": "^4.5.1",
-    "mermaid": "^11.14.0"
+    "mermaid": "^11.16.0"
   }
 }
