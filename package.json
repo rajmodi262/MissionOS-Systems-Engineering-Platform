@@ -12,7 +12,7 @@
     "test:selenium": "node tests/selenium-tests.cjs"
   },
   "devDependencies": {
-    "@eslint/js": "^9.13.0",
+    "@eslint/js": "^10.0.1",
     "eslint": "^9.13.0",
     "globals": "^15.11.0",
     "selenium-webdriver": "^4.43.0",
